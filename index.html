@@ -591,124 +591,37 @@
   /* focus visible */
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-
-  /* ── LEGAL DOCUMENTS ── */
-  .legal-section {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+  /* ── FULL-PAGE LEGAL ROUTES ── */
+  .legal-page { display: none; min-height: 100vh; padding: 0; background: var(--bg); }
+  body.legal-route { overflow-x: hidden; }
+  body.legal-route > nav,
+  body.legal-route > section:not(.legal-page),
+  body.legal-route > footer { display: none !important; }
+  body.legal-route .legal-page.is-active { display: block; }
+  .legal-header {
+    position: sticky; top: 0; z-index: 20; min-height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; padding: 0 48px;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
   }
-  .legal-actions {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-top: 28px;
+  .legal-back {
+    border: 1px solid var(--accent); background: transparent; color: var(--accent);
+    padding: 9px 18px; font: inherit; font-size: 12px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; cursor: pointer;
   }
-  .legal-btn {
-    text-decoration: none;
-    appearance: none;
-    border: 1px solid var(--accent);
-    background: transparent;
-    color: var(--accent);
-    padding: 13px 24px;
-    font: inherit;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, transform 0.15s;
-  }
-  .legal-btn:hover {
-    background: var(--accent);
-    color: var(--bg);
-    transform: translateY(-1px);
-  }
-  .legal-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: none;
-    background: var(--bg);
-  }
-  .legal-modal.is-open { display: block; }
-  .legal-dialog {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: var(--bg);
-  }
-  .legal-dialog-header {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    min-height: 76px;
-    padding: 18px 48px;
-    border-bottom: 1px solid var(--border);
-    background: color-mix(in srgb, var(--surface) 96%, transparent);
-    backdrop-filter: blur(12px);
-  }
-  .legal-dialog-title {
-    font-size: clamp(20px, 2.5vw, 30px);
-    font-weight: 700;
-    color: var(--text);
-  }
-  .legal-close {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 110px;
-    height: 42px;
-    padding: 0 18px;
-    border: 1px solid var(--accent);
-    background: transparent;
-    color: var(--accent);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  .legal-close::before { content: '← Back'; }
-  .legal-close { font-size: 0; }
-  .legal-close:hover { background: var(--accent); color: var(--bg); }
-  .legal-content {
-    flex: 1;
-    overflow-y: auto;
-    width: 100%;
-    padding: 56px max(48px, calc((100vw - 960px) / 2)) 80px;
-    color: var(--text-sub);
-    font-size: 15px;
-    line-height: 1.85;
-  }
-  .legal-content h3 {
-    color: var(--text);
-    font-size: 18px;
-    margin: 34px 0 10px;
-  }
-  .legal-content h3:first-of-type { margin-top: 0; }
-  .legal-content p { margin-bottom: 14px; }
-  .legal-content ul { margin: 10px 0 20px 24px; }
-  .legal-content li { margin-bottom: 8px; }
-  .legal-content a { color: var(--accent); }
-  .legal-updated {
-    color: var(--accent);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    margin-bottom: 30px;
-  }
-  body.modal-open { overflow: hidden; }
+  .legal-back:hover { background: var(--accent); color: var(--bg); }
+  .legal-brand { color: var(--text-sub); font-size: 13px; letter-spacing: .06em; }
+  .legal-document { width: min(900px, calc(100% - 48px)); margin: 0 auto; padding: 72px 0 96px; }
+  .legal-document h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.08; margin-bottom: 12px; }
+  .legal-content { margin-top: 36px; }
+  .legal-content h2 { font-size: 21px; margin: 34px 0 10px; color: var(--text); }
+  .legal-content p { font-size: 15px; line-height: 1.85; color: var(--text-sub); margin-bottom: 18px; white-space: normal; }
+  .footer-links .legal-link { color: var(--accent); }
   @media (max-width: 700px) {
-    .legal-dialog-header { min-height: 68px; padding: 14px 20px; }
-    .legal-dialog-title { font-size: 19px; }
-    .legal-close { min-width: 86px; padding: 0 12px; }
-    .legal-content { padding: 32px 20px 56px; font-size: 14px; }
+    .legal-header { padding: 0 20px; }
+    .legal-brand { font-size: 11px; }
+    .legal-document { width: min(100% - 36px, 900px); padding-top: 48px; }
   }
 
 </style>
@@ -734,8 +647,8 @@
     <li><a href="#about">About</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#legal" data-legal-open="privacy-modal">Privacy Policy</a></li>
-    <li><a href="#legal" data-legal-open="terms-modal">Terms of Use</a></li>
+    <li><a class="legal-link" href="/privacy" data-legal-route="privacy">Privacy Policy</a></li>
+    <li><a class="legal-link" href="/terms" data-legal-route="terms">Terms of Use</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Get a Quote</a>
 </nav>
@@ -972,21 +885,6 @@
   </div>
 </section>
 
-
-
-<!-- LEGAL DOCUMENTS -->
-<section id="legal" class="legal-section">
-  <div class="section-inner">
-    <p class="section-tag">Glow Up 75</p>
-    <h2 class="section-title">Legal <strong>Documents</strong></h2>
-    <p class="section-lead">Review the Privacy Policy and Terms of Use directly on this website.</p>
-    <div class="legal-actions">
-      <a href="#" class="legal-btn" data-legal-open="privacy-modal">Privacy Policy</a>
-      <a href="#" class="legal-btn" data-legal-open="terms-modal">Terms of Use</a>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <p class="footer-copy">© 2024 Chemolab Laboratory Ltd. All rights reserved.</p>
@@ -998,133 +896,84 @@
   </ul>
 </footer>
 
-
-
-<!-- PRIVACY POLICY MODAL -->
-<div class="legal-modal" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" aria-hidden="true">
-  <div class="legal-dialog">
-    <div class="legal-dialog-header">
-      <h2 class="legal-dialog-title" id="privacy-title">Privacy Policy – Glow Up 75</h2>
-      <button type="button" class="legal-close" data-legal-close aria-label="Close">×</button>
-    </div>
-    <div class="legal-content">
-      <p class="legal-updated">Last Updated: July 2026</p>
-      <h3>1. Introduction</h3>
-      <p>Chemolab Laboratory Ltd and/or Eran Matitiahu ("Company", "we", "us") operates the Glow Up 75 mobile application ("App"). This Privacy Policy explains what information we collect, how we use it, and your rights regarding that information. By using the App, you agree to the practices described in this Policy.</p>
-
-      <h3>2. Information We Collect</h3>
-      <p><strong>Information you provide:</strong></p>
-      <ul>
-        <li>Account details (name, email address) when registering via email, Google, or Apple Sign-In.</li>
-        <li>Profile information and preferences entered during onboarding.</li>
-        <li>Progress photos you choose to upload.</li>
-      </ul>
-      <p><strong>Information collected automatically:</strong></p>
-      <ul>
-        <li>Device information (device type, operating system version) for app functionality and notifications.</li>
-        <li>Usage data (features used, challenge progress) stored in your account.</li>
-        <li>Approximate location data — collected solely by our third-party push notification provider (OneSignal) as required by that service; it is not stored or used by us independently.</li>
-      </ul>
-
-      <h3>3. How We Use Your Information</h3>
-      <p>We use the information collected to:</p>
-      <ul>
-        <li>Create and manage your account.</li>
-        <li>Deliver the App's core features (challenge tracking, daily checklists, progress photos).</li>
-        <li>Send push notifications and daily reminders (only with your permission).</li>
-        <li>Process subscription purchases through Apple.</li>
-        <li>Improve and maintain the App.</li>
-        <li>Respond to support requests.</li>
-      </ul>
-      <p>We do not sell your personal data to third parties.</p>
-
-      <h3>4. Third-Party Services</h3>
-      <p>The App uses the following third-party services, each governed by their own privacy policies:</p>
-      <ul>
-        <li>Firebase (Google) – Authentication and data storage.</li>
-        <li>RevenueCat – Subscription management.</li>
-        <li>OneSignal – Push notifications.</li>
-        <li>Apple App Store – In-App Purchase processing.</li>
-      </ul>
-      <p>We encourage you to review the privacy policies of these providers.</p>
-
-      <h3>5. Data Retention</h3>
-      <p>We retain your personal data for as long as your account is active or as needed to provide the Service. You may request deletion of your account and associated data at any time by contacting us at <a href="mailto:morchaimsaadia@gmail.com">morchaimsaadia@gmail.com</a>.</p>
-
-      <h3>6. Your Rights</h3>
-      <p>Depending on your jurisdiction, you may have the right to:</p>
-      <ul>
-        <li>Access the personal data we hold about you.</li>
-        <li>Request correction of inaccurate data.</li>
-        <li>Request deletion of your data.</li>
-        <li>Withdraw consent for data processing at any time.</li>
-      </ul>
-      <p>To exercise any of these rights, contact us at <a href="mailto:morchaimsaadia@gmail.com">morchaimsaadia@gmail.com</a>.</p>
-
-      <h3>7. Children's Privacy</h3>
-      <p>The App is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such data, please contact us immediately.</p>
-
-      <h3>8. Security</h3>
-      <p>We implement industry-standard technical and organizational measures to protect your personal data. However, no method of transmission or storage is 100% secure, and we cannot guarantee absolute security.</p>
-
-      <h3>9. Changes to This Policy</h3>
-      <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the date at the top of this page. Continued use of the App after changes are posted constitutes acceptance of the revised Policy.</p>
-
-      <h3>10. Contact</h3>
-      <p>Chemolab Laboratory Ltd<br>Email: <a href="mailto:morchaimsaadia@gmail.com">morchaimsaadia@gmail.com</a><br>Website: www.chemolablaboratory.info</p>
-    </div>
+<section id="privacy-page" class="legal-page" aria-labelledby="privacy-page-title">
+  <div class="legal-header">
+    <button type="button" class="legal-back" data-home-route aria-label="Back to home">← Back</button>
+    <span class="legal-brand">Chemolab Laboratory Ltd</span>
   </div>
-</div>
-
-<!-- TERMS OF USE MODAL -->
-<div class="legal-modal" id="terms-modal" role="dialog" aria-modal="true" aria-labelledby="terms-title" aria-hidden="true">
-  <div class="legal-dialog">
-    <div class="legal-dialog-header">
-      <h2 class="legal-dialog-title" id="terms-title">Terms of Use – Glow Up 75</h2>
-      <button type="button" class="legal-close" data-legal-close aria-label="Close">×</button>
-    </div>
-    <div class="legal-content">
-      <p class="legal-updated">Last Updated: July 2026</p>
-      <h3>1. Agreement to Terms</h3>
-      <p>These Terms of Use ("Terms") govern your use of the Glow Up 75 mobile application ("App"), operated by Chemolab Laboratory Ltd and/or Eran Matitiahu ("Company", "we", "us"). By downloading or using the App, you confirm that you have read, understood, and agreed to these Terms. If you do not agree, you must discontinue use of the App immediately.</p>
-
-      <h3>2. The Service</h3>
-      <p>Glow Up 75 is a personal challenge tracking application that includes daily task management, progress photo logging, challenges, and social features. The Company reserves the right to modify, suspend, or discontinue any part of the Service at any time without prior notice.</p>
-
-      <h3>3. Subscriptions and Payments</h3>
-      <p>The App offers auto-renewable subscriptions purchased through Apple App Store:</p>
-      <ul>
-        <li>Weekly – ₪14.90 per week.</li>
-        <li>Monthly – ₪49.90 per month.</li>
-        <li>Yearly – ₪179.90 per year.</li>
-      </ul>
-      <p>Payment is charged to your Apple ID account upon purchase confirmation. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period. You can manage or cancel your subscription at any time through your Apple ID account settings. No refunds are provided for unused portions of an active subscription period.</p>
-
-      <h3>4. User Content</h3>
-      <p>You retain ownership of any photos or content you upload to the App. By uploading content, you grant the Company a limited, non-exclusive license to store and display that content solely for the purpose of providing the Service to you. You are solely responsible for the content you upload and must not upload anything unlawful, offensive, or infringing on third-party rights.</p>
-
-      <h3>5. Intellectual Property</h3>
-      <p>All content within the App — including design, text, graphics, logos, and software — is the exclusive property of the Company and is protected by applicable intellectual property laws. You may not copy, reproduce, distribute, or create derivative works from any part of the App without prior written consent.</p>
-
-      <h3>6. Disclaimer of Warranties</h3>
-      <p>The App is provided "as is" without warranties of any kind, express or implied. The Company does not guarantee that the App will be error-free, uninterrupted, or that any results achieved through the App (such as fitness or wellness outcomes) will meet your expectations.</p>
-
-      <h3>7. Limitation of Liability</h3>
-      <p>To the fullest extent permitted by applicable law, the Company shall not be liable for any indirect, incidental, special, or consequential damages arising out of or related to your use of the App, even if advised of the possibility of such damages.</p>
-
-      <h3>8. Changes to These Terms</h3>
-      <p>We reserve the right to update these Terms at any time. Continued use of the App after changes are posted constitutes acceptance of the revised Terms. We encourage you to review these Terms periodically.</p>
-
-      <h3>9. Governing Law</h3>
-      <p>These Terms are governed by the laws of the State of Israel, without regard to conflict of law principles.</p>
-
-      <h3>10. Contact</h3>
-      <p>Chemolab Laboratory Ltd<br>Email: <a href="mailto:morchaimsaadia@gmail.com">morchaimsaadia@gmail.com</a><br>Website: www.chemolablaboratory.info</p>
-    </div>
+  <main class="legal-document">
+    <h1 id="privacy-page-title">Privacy Policy – Glow Up 75</h1>
+    <div class="legal-content"><h2>1. Introduction</h2><p>Chemolab Laboratory Ltd and/or Eran Matitiahu (&quot;Company&quot;, &quot;we&quot;, &quot;us&quot;) operates the Glow Up 75 mobile application (&quot;App&quot;). This Privacy Policy explains what information we collect, how we use it, and your rights regarding that information. By using the App, you agree to the practices described in this Policy.</p><h2>2. Information We Collect</h2><p>Information you provide:</p><p>Account details (name, email address) when registering via email, Google, or Apple Sign-In<br>Profile information and preferences entered during onboarding<br>Progress photos you choose to upload</p><p>Information collected automatically:</p><p>Device information (device type, operating system version) for app functionality and notifications<br>Usage data (features used, challenge progress) stored in your account<br>Approximate location data — collected solely by our third-party push notification provider (OneSignal) as required by that service; it is not stored or used by us independently</p><h2>3. How We Use Your Information</h2><p>We use the information collected to:</p><p>Create and manage your account<br>Deliver the App&#x27;s core features (challenge tracking, daily checklists, progress photos)<br>Send push notifications and daily reminders (only with your permission)<br>Process subscription purchases through Apple<br>Improve and maintain the App<br>Respond to support requests</p><p>We do not sell your personal data to third parties.</p><h2>4. Third-Party Services</h2><p>The App uses the following third-party services, each governed by their own privacy policies:</p><p>Firebase (Google) – Authentication and data storage<br>RevenueCat – Subscription management<br>OneSignal – Push notifications<br>Apple App Store – In-App Purchase processing</p><p>We encourage you to review the privacy policies of these providers.</p><h2>5. Data Retention</h2><p>We retain your personal data for as long as your account is active or as needed to provide the Service. You may request deletion of your account and associated data at any time by contacting us at morchaimsaadia@gmail.com.</p><h2>6. Your Rights</h2><p>Depending on your jurisdiction, you may have the right to:</p><p>Access the personal data we hold about you<br>Request correction of inaccurate data<br>Request deletion of your data<br>Withdraw consent for data processing at any time</p><p>To exercise any of these rights, contact us at morchaimsaadia@gmail.com.</p><h2>7. Children&#x27;s Privacy</h2><p>The App is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such data, please contact us immediately.</p><h2>8. Security</h2><p>We implement industry-standard technical and organizational measures to protect your personal data. However, no method of transmission or storage is 100% secure, and we cannot guarantee absolute security.</p><h2>9. Changes to This Policy</h2><p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the date at the top of this page. Continued use of the App after changes are posted constitutes acceptance of the revised Policy.</p><h2>10. Contact</h2><p>For any questions or concerns regarding this Privacy Policy, please contact us:</p><p>Chemolab Laboratory Ltd<br>Email: morchaimsaadia@gmail.com<br>Website: http://www.chemolablaboratory.info/</p></div>
+  </main>
+</section>
+<section id="terms-page" class="legal-page" aria-labelledby="terms-page-title">
+  <div class="legal-header">
+    <button type="button" class="legal-back" data-home-route aria-label="Back to home">← Back</button>
+    <span class="legal-brand">Chemolab Laboratory Ltd</span>
   </div>
-</div>
-
+  <main class="legal-document">
+    <h1 id="terms-page-title">Terms of Use – Glow Up 75</h1>
+    <div class="legal-content"><h2>1. Agreement to Terms</h2><p>These Terms of Use (&quot;Terms&quot;) govern your use of the Glow Up 75 mobile application (&quot;App&quot;), operated by Chemolab Laboratory Ltd and/or Eran Matitiahu (&quot;Company&quot;, &quot;we&quot;, &quot;us&quot;). By downloading or using the App, you confirm that you have read, understood, and agreed to these Terms. If you do not agree, you must discontinue use of the App immediately.</p><h2>2. The Service</h2><p>Glow Up 75 is a personal challenge tracking application that includes daily task management, progress photo logging, challenges, and social features. The Company reserves the right to modify, suspend, or discontinue any part of the Service at any time without prior notice.</p><h2>3. Subscriptions and Payments</h2><p>The App offers auto-renewable subscriptions purchased through Apple App Store:</p><p>Weekly – ₪14.90 per week<br>Monthly – ₪49.90 per month<br>Yearly – ₪179.90 per year</p><p>Payment is charged to your Apple ID account upon purchase confirmation. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period. You can manage or cancel your subscription at any time through your Apple ID account settings. No refunds are provided for unused portions of an active subscription period.</p><h2>4. User Content</h2><p>You retain ownership of any photos or content you upload to the App. By uploading content, you grant the Company a limited, non-exclusive license to store and display that content solely for the purpose of providing the Service to you. You are solely responsible for the content you upload and must not upload anything unlawful, offensive, or infringing on third-party rights.</p><h2>5. Intellectual Property</h2><p>All content within the App — including design, text, graphics, logos, and software — is the exclusive property of the Company and is protected by applicable intellectual property laws. You may not copy, reproduce, distribute, or create derivative works from any part of the App without prior written consent.</p><h2>6. Disclaimer of Warranties</h2><p>The App is provided &quot;as is&quot; without warranties of any kind, express or implied. The Company does not guarantee that the App will be error-free, uninterrupted, or that any results achieved through the App (such as fitness or wellness outcomes) will meet your expectations.</p><h2>7. Limitation of Liability</h2><p>To the fullest extent permitted by applicable law, the Company shall not be liable for any indirect, incidental, special, or consequential damages arising out of or related to your use of the App, even if advised of the possibility of such damages.</p><h2>8. Changes to These Terms</h2><p>We reserve the right to update these Terms at any time. Continued use of the App after changes are posted constitutes acceptance of the revised Terms. We encourage you to review these Terms periodically.</p><h2>9. Governing Law</h2><p>These Terms are governed by the laws of the State of Israel, without regard to conflict of law principles.</p><h2>10. Contact</h2><p>For any questions regarding these Terms, please contact us:</p><p>Chemolab Laboratory Ltd<br>Email: morchaimsaadia@gmail.com<br>Website: http://www.chemolablaboratory.info/</p></div>
+  </main>
+</section>
 <script>
+
+/* ── INTERNAL ROUTING FOR LEGAL PAGES ── */
+(function () {
+  const pages = {
+    privacy: document.getElementById('privacy-page'),
+    terms: document.getElementById('terms-page')
+  };
+
+  function routeFromPath() {
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    if (path === '/privacy') return 'privacy';
+    if (path === '/terms') return 'terms';
+    return null;
+  }
+
+  function renderRoute(route, scrollToTop = true) {
+    Object.values(pages).forEach(page => page.classList.remove('is-active'));
+    if (route && pages[route]) {
+      document.body.classList.add('legal-route');
+      pages[route].classList.add('is-active');
+      document.title = route === 'privacy'
+        ? 'Privacy Policy – Glow Up 75'
+        : 'Terms of Use – Glow Up 75';
+      if (scrollToTop) window.scrollTo(0, 0);
+    } else {
+      document.body.classList.remove('legal-route');
+      document.title = 'Chemolab Laboratory Ltd — Analytical & Chemical Testing Services';
+      if (scrollToTop) window.scrollTo(0, 0);
+    }
+  }
+
+  function navigate(route) {
+    const url = route ? `/${route}` : '/';
+    history.pushState({ route }, '', url);
+    renderRoute(route);
+  }
+
+  document.addEventListener('click', event => {
+    const legalLink = event.target.closest('[data-legal-route]');
+    if (legalLink) {
+      event.preventDefault();
+      navigate(legalLink.dataset.legalRoute);
+      return;
+    }
+
+    const homeButton = event.target.closest('[data-home-route]');
+    if (homeButton) {
+      event.preventDefault();
+      navigate(null);
+    }
+  });
+
+  window.addEventListener('popstate', () => renderRoute(routeFromPath(), false));
+  renderRoute(routeFromPath(), false);
+})();
+
+
 /* ── HERO BACKGROUND PARTICLES ── */
 (function() {
   const canvas = document.getElementById('hero-canvas');
@@ -1368,53 +1217,5 @@
   resize();
   draw();
   window.addEventListener('resize', resize);
-})();
-</script>
-
-
-<script>
-(function () {
-  const triggers = document.querySelectorAll('[data-legal-open]');
-  const modals = document.querySelectorAll('.legal-modal');
-  let lastFocused = null;
-
-  function openModal(id) {
-    const modal = document.getElementById(id);
-    if (!modal) return;
-    lastFocused = document.activeElement;
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-    const closeButton = modal.querySelector('[data-legal-close]');
-    if (closeButton) closeButton.focus();
-  }
-
-  function closeModal(modal) {
-    if (!modal) return;
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-open');
-    if (lastFocused) lastFocused.focus();
-  }
-
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', event => {
-      event.preventDefault();
-      openModal(trigger.getAttribute('data-legal-open'));
-    });
-  });
-
-  modals.forEach(modal => {
-    modal.querySelectorAll('[data-legal-close]').forEach(button => {
-      button.addEventListener('click', () => closeModal(modal));
-    });
-  });
-
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') {
-      const openModalElement = document.querySelector('.legal-modal.is-open');
-      if (openModalElement) closeModal(openModalElement);
-    }
-  });
 })();
 </script>
